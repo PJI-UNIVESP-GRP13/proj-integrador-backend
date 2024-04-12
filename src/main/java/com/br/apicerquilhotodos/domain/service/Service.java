@@ -19,4 +19,18 @@ public class Service {
     @Column(name = "resolution_deadline")
     private Integer resolution;
 
+    public Service(ServiceDataRegister data) {
+        this.service = data.service();
+        this.resolution = data.resolution();
+    }
+
+    public void infoUpdate(UpdateServiceData data) {
+        if(data.service() != null) {
+            this.service = data.service();
+        }
+        if (data.resolution() != null) {
+            this.resolution = data.resolution();
+        }
+    }
+
 }
