@@ -25,6 +25,8 @@ public class Complaint {
     @Lob
     @Column(columnDefinition = "BLOB")
     private byte[] photo;
+    @Enumerated(EnumType.STRING)
+    private Status status;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "users_id")
@@ -33,5 +35,12 @@ public class Complaint {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "services_id")
     private Service service;
+
+    public Complaint(ComplaintDataRegister complaintData) {
+        this.address = complaintData.address();
+        this.neighborhood = complaintData.neighborhood();
+        this.zipCode = complaintData.zipCode();
+        this.description = complaintData.description();
+    }
 
 }
