@@ -1,9 +1,6 @@
 package com.br.apicerquilhotodos.controller;
 
-import com.br.apicerquilhotodos.domain.service.Service;
-import com.br.apicerquilhotodos.domain.service.ServiceDataRegister;
-import com.br.apicerquilhotodos.domain.service.ServiceDetailsDate;
-import com.br.apicerquilhotodos.domain.service.UpdateServiceData;
+import com.br.apicerquilhotodos.domain.service.*;
 import com.br.apicerquilhotodos.repository.ServiceRepository;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
@@ -33,9 +30,8 @@ public class ServiceController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Service>> listAll() {
-        var services = repository.findAll();
-        return ResponseEntity.ok(services);
+    public List<ServiceDetailsGet> list() {
+        return repository.findAllServices();
     }
 
     @PutMapping
