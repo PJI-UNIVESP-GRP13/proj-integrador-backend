@@ -9,7 +9,6 @@ import com.br.apicerquilhotodos.domain.user.User;
 import com.br.apicerquilhotodos.repository.ComplaintRepository;
 import com.br.apicerquilhotodos.repository.ServiceRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -19,7 +18,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.util.Base64;
+import java.util.List;
 
 @RestController
 @RequestMapping("complaints")
@@ -61,6 +60,15 @@ public class ComplaintController {
 
         var uri = uriBuilder.path("/complaints/{id}").buildAndExpand(complaint.getId()).toUri();
         return ResponseEntity.created(uri).body(new ComplaintDetailsDate(complaint));
+    }
+
+    @GetMapping
+    public ResponseEntity<List<Complaint>> listComplaintsForCurrentUser() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String userId = ((User) authentication.getPrincipal()).getId();
+
+        List<Complaint> userComplaints = complaintRepository.findByUserId(userId);
+        return ResponseEntity.ok(userComplaints);
     }
 
 }
