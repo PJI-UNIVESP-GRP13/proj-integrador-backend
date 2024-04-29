@@ -63,12 +63,11 @@ public class ComplaintController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Complaint>> listComplaintsForCurrentUser() {
+    public List<ComplaintDetailsDate> listComplaintsForCurrentUser() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String userId = ((User) authentication.getPrincipal()).getId();
 
-        List<Complaint> userComplaints = complaintRepository.findByUserId(userId);
-        return ResponseEntity.ok(userComplaints);
+        return complaintRepository.findByUserId(userId);
     }
 
 }
