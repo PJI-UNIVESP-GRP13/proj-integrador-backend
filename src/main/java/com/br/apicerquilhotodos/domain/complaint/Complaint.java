@@ -22,8 +22,8 @@ public class Complaint {
     @Column(name = "zip_code")
     private String zipCode;
     private String description;
-    @Lob
-    @Column(columnDefinition = "BLOB")
+
+    @Column(columnDefinition = "bytea")
     private byte[] photo;
     @Enumerated(EnumType.STRING)
     private Status status;
