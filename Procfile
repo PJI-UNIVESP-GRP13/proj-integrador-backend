@@ -1,1 +1,1 @@
-web: java -jar api-cerquilho-todos-0.0.1-SNAPSHOT.jar
+web: java -jar target/api-cerquilho-todos-0.0.1-SNAPSHOT.jar
