@@ -1,1 +1,1 @@
-JAVA_TOOL_OPTIONS=-XX:+UseJava17Classloader java -jar api-cerquilho-todos-0.0.1-SNAPSHOT.jar
+web: java -jar api-cerquilho-todos-0.0.1-SNAPSHOT.jar
