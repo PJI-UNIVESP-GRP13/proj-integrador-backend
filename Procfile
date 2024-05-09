@@ -1,1 +1,1 @@
-web: java -jar target/api-cerquilho-todos-0.0.1-SNAPSHOT.jar
+web: PORT=8080 java -jar target/api-cerquilho-todos-0.0.1-SNAPSHOT.jar
